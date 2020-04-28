@@ -8,7 +8,6 @@ class home extends Component {
   state = {
     screams: null,
   };
-
   componentDidMount() {
     axios
       .get("/screams")
@@ -19,7 +18,6 @@ class home extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   render() {
     let recentScreamsMarkup = this.state.screams ? (
       this.state.screams.map((scream) => (
@@ -34,7 +32,7 @@ class home extends Component {
           {recentScreamsMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <p>Profile</p>
+          <p>Profile...</p>
         </Grid>
       </Grid>
     );
