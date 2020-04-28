@@ -4,13 +4,14 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
+  LOADING_USER,
 } from "../types";
 import axios from "axios";
 
 export const loginUser = (userData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("https://us-central1-todoist-app-c7d2a.cloudfunctions.net/api/login", userData)
+    .post("/login", userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
@@ -28,7 +29,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 export const signupUser = (newUserData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("https://us-central1-todoist-app-c7d2a.cloudfunctions.net/api/signup", newUserData)
+    .post("/signup", newUserData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
@@ -50,8 +51,9 @@ export const logoutUser = () => (dispatch) => {
 };
 
 export const getUserData = () => (dispatch) => {
+  dispatch({ type: LOADING_USER });
   axios
-    .get("https://us-central1-todoist-app-c7d2a.cloudfunctions.net/api/user")
+    .get("/user")
     .then((res) => {
       dispatch({
         type: SET_USER,
