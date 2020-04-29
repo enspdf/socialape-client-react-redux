@@ -6,8 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
 import { Link } from "react-router-dom";
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
@@ -17,6 +15,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import dayjs from "dayjs";
 import { logoutUser, uploadImage } from "../redux/actions/userActions";
 import EditDetails from "../components/EditDetails";
+import MyButton from "../util/MyButton";
 
 const styles = (theme) => ({
   paper: {
@@ -105,11 +104,13 @@ class Profile extends Component {
                 id="imageInput"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title="Edit profile picture" placement="top">
-                <IconButton onClick={this.handleEditPicture} className="button">
-                  <EditIcon color="primary" />
-                </IconButton>
-              </Tooltip>
+              <MyButton
+                tip="Edit profile picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </MyButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -122,7 +123,7 @@ class Profile extends Component {
                 @{handle}
               </MuiLink>
               <hr />
-              {bio && <Typography variant="body">{bio}</Typography>}
+              {bio && <Typography variant="body1">{bio}</Typography>}
               <hr />
               {location && (
                 <Fragment>
@@ -132,7 +133,7 @@ class Profile extends Component {
               {website && (
                 <Fragment>
                   <LinkIcon color="primary" />
-                  <a href={website} target="_blank" ref="noopener noreferrer">
+                  <a href={website} target="_blank" rel="noopener noreferrer">
                     {" "}
                     {website}
                   </a>
@@ -142,11 +143,9 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <Tooltip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary" />
-              </IconButton>
-            </Tooltip>
+            <MyButton tip="Logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="primary" />
+            </MyButton>
             <EditDetails />
           </div>
         </Paper>
