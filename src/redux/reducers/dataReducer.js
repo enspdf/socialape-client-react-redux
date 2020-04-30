@@ -5,6 +5,7 @@ import {
   LOADING_DATA,
   DELETE_SCREAM,
   POST_SCREAM,
+  SET_SCREAM,
 } from "../types";
 
 const initialState = {
@@ -19,6 +20,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case SET_SCREAM:
+      return {
+        ...state,
+        scream: action.payload,
       };
     case SET_SCREAMS:
       return {
