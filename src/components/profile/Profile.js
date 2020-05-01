@@ -13,9 +13,9 @@ import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import dayjs from "dayjs";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
-import EditDetails from "../components/EditDetails";
-import MyButton from "../util/MyButton";
+import { logoutUser, uploadImage } from "../../redux/actions/userActions";
+import EditDetails from "./EditDetails";
+import MyButton from "../../util/MyButton";
 
 const styles = (theme) => ({
   paper: {
